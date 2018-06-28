@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http'
 })
 export class PessoasService {
 
-  private url = 'https://5b327da582407e001413f1c8.mockapi.io/usuarios';
+  private url = 'api/pessoas';
 
   constructor(private http: HttpClient) { }
 

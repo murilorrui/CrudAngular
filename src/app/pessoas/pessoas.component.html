@@ -1,5 +1,5 @@
 <mat-card>
-  <div fxFlex="100" fxLayout="row" fxLayoutAlign="end">
+  <div>
      <a mat-raised-button color="primary" routerLink="/criar-pessoa">Novo</a>
   </div>
   <mat-form-field>
@@ -47,5 +47,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </mat-card>
