@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { PessoasService } from '../pessoas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pessoas',
@@ -8,38 +10,57 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 })
 
 export class PessoasComponent implements OnInit {
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  private id:number;
+
+  displayedColumns = ['nome', 'sobrenome', 'email', 'profissao', 'formacao', 'id'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  constructor(private service:PessoasService, private router:Router) {
+
+  }
+
+  private getAll() {
+    let list = this.service.all().subscribe(suc=>{
+      this.dataSource = new MatTableDataSource<any>(suc);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  delete(id){
+    return this.service.delete(id).subscribe(suc=> {
+      this.getAll();
+    });
+  }
+
+  edit(id:number) {
+    this.router.navigate(['/editar-pessoa', id]);
+  }
+
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    this.getAll();
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
 }
 
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  nome: string;
+  sobrenome: string;
+  email: string;
+  sexo: string;
+  formacao: string;
+  profissao: string;
+  estado: string;
+  cidade: string;
+  id: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {nome: '', sobrenome: '', email: '', sexo: '',  profissao: '', formacao: '', estado: '', cidade: '', id: ''},
 ];

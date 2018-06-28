@@ -1,28 +1,47 @@
 <mat-card>
-  <a mat-raised-button color="primary" href="/criar-pessoas">Adicionar</a>
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="end">
+     <a mat-raised-button color="primary" routerLink="/criar-pessoa">Novo</a>
+  </div>
   <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    <ng-container matColumnDef="nome">
+       <th mat-header-cell *matHeaderCellDef> Nome </th>
+       <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <ng-container matColumnDef="sobrenome">
+       <th mat-header-cell *matHeaderCellDef> Sobrenome </th>
+       <td mat-cell *matCellDef="let element"> {{element.sobrenome}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    <ng-container matColumnDef="email">
+       <th mat-header-cell *matHeaderCellDef> Email </th>
+       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    <ng-container matColumnDef="profissao">
+       <th mat-header-cell *matHeaderCellDef> Profissão </th>
+       <td mat-cell *matCellDef="let element"> {{element.profissao}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="formacao">
+       <th mat-header-cell *matHeaderCellDef> Formação </th>
+       <td mat-cell *matCellDef="let element"> {{element.formacao}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+       <th mat-header-cell *matHeaderCellDef> Ações </th>
+       <td *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="edit(element.id)">
+             <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+           </button>
+           <button mat-icon-button color="warn" (click)="delete(element.id)">
+               <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+           </button>
+        </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

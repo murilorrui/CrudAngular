@@ -1,0 +1,98 @@
+<form [formGroup]="myForm" fxLayout="column" (submit)="saveUser()">
+  <mat-card>
+    <mat-grid-list cols="12" rowHeight="72px" gutterSize="16px" >
+      <mat-grid-tile
+        [colspan]="6"
+        [rowspan]="1"
+      >
+        <mat-form-field>
+          <input matInput placeholder="Nome" formControlName="nome">
+          <mat-error *ngIf="myForm.controls['nome'].hasError('required')">
+            Campo obrigatório
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan]="6"
+        [rowspan]="1"
+      >
+        <mat-form-field>
+          <input matInput placeholder="Sobrenome" formControlName="sobrenome">
+          <mat-error *ngIf="myForm.controls['sobrenome'].hasError('required')">
+            Campo obrigatório
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan]="6"
+        [rowspan]="1"
+      >
+        <mat-form-field>
+          <input matInput placeholder="E-mail" formControlName="email">
+          <mat-error *ngIf="myForm.controls['email'].hasError('required')">
+            Campo obrigatório
+          </mat-error>
+          <mat-error *ngIf="myForm.controls['email'].hasError('email')">
+            Email inválido
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan]="6"
+        [rowspan]="1"
+      >
+        <mat-form-field>
+          <mat-select placeholder="Sexo" formControlName="sexo">
+            <mat-option *ngFor="let sexo of sexos" [value]="sexo.id">{{ sexo.descricao }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan]="6"
+        [rowspan]="1"
+      >
+        <mat-form-field>
+          <input matInput placeholder="Área de formação" formControlName="formacao">
+          <mat-error *ngIf="myForm.controls['nome'].hasError('required')">
+            Campo obrigatório
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan]="6"
+        [rowspan]="1"
+      >
+        <mat-form-field>
+           <input matInput placeholder="Profissão" formControlName="profissao">
+           <mat-error *ngIf="myForm.controls['profissao'].hasError('required')">
+             Campo obrigatório
+           </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan]="6"
+        [rowspan]="1"
+      >
+        <mat-form-field>
+          <input matInput placeholder="Cidade" formControlName="cidade">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile
+        [colspan]="6"
+        [rowspan]="1"
+      >
+        <mat-form-field>
+          <input matInput placeholder="Estado" formControlName="estado">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between">
+      <button type="button" color="warn" mat-raised-button routerLink="/pessoas">
+        Cancelar
+      </button>
+      <button type="submit" color="primary" mat-raised-button>
+        Salvar
+      </button>
+    </div>
+  </mat-card>
+</form>
