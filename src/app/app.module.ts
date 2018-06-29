@@ -9,18 +9,26 @@ import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatOptionModule, MatSelectModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { PessoasComponent } from './pessoas/pessoas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
+
+import { PessoasComponent } from './pessoas/pessoas.component';
 import { PessoasFormComponent } from './pessoas/pessoas-form/pessoas-form.component';
+import { ProfissoesComponent } from './profissoes/profissoes.component';
+import { ProfissoesFormComponent } from './profissoes/profissoes-form/profissoes-form.component';
 
 import { PessoasService } from './pessoas.service'
+import { ProfissoesService } from './profissoes.service'
+import { EnderecoService } from './endereco.service';
 
 const appRoutes: Routes = [
   { path: 'pessoas', component: PessoasComponent },
   { path: 'criar-pessoa', component: PessoasFormComponent },
-  { path: 'editar-pessoa/:id', component: PessoasFormComponent }
+  { path: 'editar-pessoa/:id', component: PessoasFormComponent },
+  { path: 'profissoes', component: ProfissoesComponent },
+  { path: 'criar-profissao', component: ProfissoesFormComponent },
+  { path: 'editar-profissao/:id', component: ProfissoesFormComponent }
 ];
 
 @NgModule({
@@ -28,7 +36,9 @@ const appRoutes: Routes = [
     AppComponent,
     MyNavComponent,
     PessoasComponent,
-    PessoasFormComponent
+    PessoasFormComponent,
+    ProfissoesComponent,
+    ProfissoesFormComponent
   ],
   imports: [
     HttpClientModule,
@@ -55,7 +65,7 @@ const appRoutes: Routes = [
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [PessoasService],
+  providers: [PessoasService, EnderecoService, ProfissoesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

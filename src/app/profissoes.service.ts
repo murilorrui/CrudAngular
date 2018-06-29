@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http'
 @Injectable({
   providedIn: 'root'
 })
-export class PessoasService {
+export class ProfissoesService {
 
-  private url = 'api/pessoas';
+  private url = 'api/profissoes';
 
   constructor(private http: HttpClient) { }
 
@@ -18,12 +18,12 @@ export class PessoasService {
     return this.http.get<any>(this.url+'/'+id);
   }
 
-  add(user){
-    return this.http.post(this.url, user);
+  add(job){
+    return this.http.post(this.url, job);
   }
 
-  edit(user) {
-    return this.http.put(this.url+'/'+user.id, user);
+  edit(job) {
+    return this.http.put(this.url+'/'+job.id, job);
   }
 
   delete(id:number) {
