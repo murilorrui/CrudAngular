@@ -1,0 +1,25 @@
+<form [formGroup]="myForm" (submit)="save()">
+  <mat-card>
+    <mat-grid-list cols="12" rowHeight="72px" gutterSize="16px" >
+      <mat-grid-tile
+        [colspan]="12"
+        [rowspan]="1"
+      >
+        <mat-form-field>
+          <input matInput placeholder="Nome" formControlName="nome">
+          <mat-error *ngIf="myForm.controls['nome'].hasError('required')">
+            Campo obrigatório
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="space-between">
+      <button type="button" color="warn" mat-raised-button routerLink="/pessoas">
+        Cancelar
+      </button>
+      <button type="submit" color="primary" mat-raised-button>
+        Salvar
+      </button>
+    </div>
+  </mat-card>
+</form>

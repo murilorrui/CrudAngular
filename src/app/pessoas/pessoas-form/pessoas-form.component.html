@@ -45,6 +45,9 @@
           <mat-select placeholder="Sexo" formControlName="sexo">
             <mat-option *ngFor="let sexo of sexos" [value]="sexo.id">{{ sexo.descricao }}</mat-option>
           </mat-select>
+          <mat-error *ngIf="myForm.controls['profissao'].hasError('required')">
+            Campo obrigatório
+          </mat-error>
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile
@@ -63,7 +66,9 @@
         [rowspan]="1"
       >
         <mat-form-field>
-           <input matInput placeholder="Profissão" formControlName="profissao">
+           <mat-select placeholder="Profissão" formControlName="profissao">
+             <mat-option *ngFor="let profissao of profissoes" [value]="profissao.nome">{{ profissao.nome }}</mat-option>
+           </mat-select>
            <mat-error *ngIf="myForm.controls['profissao'].hasError('required')">
              Campo obrigatório
            </mat-error>
@@ -74,17 +79,27 @@
         [rowspan]="1"
       >
         <mat-form-field>
-          <input matInput placeholder="Cidade" formControlName="cidade">
-        </mat-form-field>
+          <mat-select placeholder="Estado" (ngModelChange)="selectState()" formControlName="estado">
+            <mat-option *ngFor="let estado of estados" [value]="estado">{{ estado.nome }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="myForm.controls['profissao'].hasError('required')">
+            Campo obrigatório
+          </mat-error>
+       </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile
         [colspan]="6"
         [rowspan]="1"
       >
-        <mat-form-field>
-          <input matInput placeholder="Estado" formControlName="estado">
-        </mat-form-field>
-      </mat-grid-tile>
+      <mat-form-field>
+        <mat-select placeholder="Cidade" formControlName="cidade">
+          <mat-option *ngFor="let cidade of cidades" [value]="cidade.id">{{ cidade.nome }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="myForm.controls['profissao'].hasError('required')">
+          Campo obrigatório
+        </mat-error>
+     </mat-form-field>
+    </mat-grid-tile>
     </mat-grid-list>
     <div class="space-between">
       <button type="button" color="warn" mat-raised-button routerLink="/pessoas">
